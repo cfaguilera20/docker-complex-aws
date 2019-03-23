@@ -21,3 +21,15 @@ after_success:
     - docker push cfaguilera20/complex-server
     - docker push cfaguilera20/complex-worker
 
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: docker-complex-aws
+    env: DockerComplexAws-env
+    bucket_name: elasticbeanstalk-us-east-1-330478549731
+    bucket_path: docker-complex-aws
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: $AWS_SECRET_KEY
